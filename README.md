@@ -7,21 +7,60 @@
   <img alt="License" src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
-A local Retrieval-Augmented Generation (RAG) application for chatting with PDF and DOCX documents. Upload a file, retrieve the most relevant chunks, and ask a local LLM to answer questions grounded in the document content.
+Local AI for Document Intelligence.
 
-No API keys. No paid services. Runs locally on CPU.
+A local Retrieval-Augmented Generation (RAG) application for document Q&A. Users can upload PDF and DOCX files, retrieve the most relevant chunks using semantic similarity, and ask a local Ollama model grounded questions based on the uploaded content.
+
+This project demonstrates how to build an end-to-end RAG workflow using Python, Streamlit, sentence-transformers, NumPy, and local LLMs. It focuses on transparency, explainability, and offline deployment without requiring paid APIs or cloud services.
 
 ## Features
 
-- Upload PDF and DOCX files directly in the app
-- Extract text with metadata including page numbers
-- Clean and chunk documents for retrieval
-- Embed text with a local sentence transformer
-- Compute cosine similarity to rank relevant chunks
-- Retrieve Top-K chunks above a similarity threshold
-- Ask a local Ollama model for grounded answers
-- View the exact retrieved context used in each response
-- Works fully offline after initial model downloads
+- Upload PDF and DOCX files
+- Extract and clean document text
+- Split long documents into searchable chunks
+- Embed text using local sentence-transformers
+- Retrieve the most relevant passages by similarity
+- Generate grounded answers with a local Ollama model
+- Show retrieved context for transparency
+- Tune retrieval settings such as Top-K and similarity threshold
+- Run entirely locally with no API key required
+
+## Why this project matters
+
+This project shows how RAG works in practice: documents are indexed, relevant passages are retrieved, and a model generates answers from grounded context instead of relying on memory alone.
+
+## Architecture overview
+
+User uploads document
+→ Document loader extracts text from PDF/DOCX
+→ Text cleaner normalizes formatting
+→ Chunker splits text into manageable segments
+→ Embedding model converts chunks into vectors
+→ Retriever compares query embedding with chunk embeddings using cosine similarity
+→ Top-K chunks are selected
+→ Prompt builder combines retrieved context + user question
+→ Local Ollama LLM generates a grounded answer
+→ UI displays answer and retrieved context
+
+This architecture keeps retrieval and generation separate, improving explainability and reducing hallucination by grounding responses in document evidence.
+
+## Demo script
+
+"Today I’m showing a local document Q&A application built with Retrieval-Augmented Generation. The app allows a user to upload a PDF or DOCX file, extract the content, and ask questions in natural language."
+
+"First, I upload a document into the app. The system reads the file, cleans the text, and splits it into chunks. Each chunk is embedded into a vector space using a sentence transformer model."
+
+"Next, I ask a question like: ‘What are the eligibility requirements mentioned in this document?’ The system embeds the question and compares it to the document chunks using cosine similarity."
+
+"The app retrieves the most relevant chunks and displays the retrieved context for transparency. This is important because it shows exactly why the answer was selected."
+
+"Then the local Ollama model generates a grounded answer using only the retrieved context. Notice that the model is not using external APIs or cloud services—it runs locally."
+
+"This shows how RAG combines retrieval and generation to improve factual grounding. It also reduces hallucination by forcing the model to answer from the document instead of general knowledge alone."
+
+## Project goal
+
+To build a simple, local, explainable document Q&A system that demonstrates real-world RAG concepts and can be extended for enterprise or research use cases.
 
 ## 1. How RAG works (read this first)
 
