@@ -1,8 +1,27 @@
-# Chat with Documents - Local RAG Workshop App
+# RAG Workshop: Local Document Q&A
 
-Upload a PDF/DOCX, ask questions, see **which chunks were retrieved and their cosine-similarity scores**, and get a
-grounded answer from a **local** LLM (Qwen preferred, Llama fallback) through Ollama.
-No API keys. No paid services. CPU only.
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-blue" />
+  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-App-FF4B4B" />
+  <img alt="Ollama" src="https://img.shields.io/badge/Ollama-Local%20LLM-8A2BE2" />
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-green" />
+</p>
+
+A local Retrieval-Augmented Generation (RAG) application for chatting with PDF and DOCX documents. Upload a file, retrieve the most relevant chunks, and ask a local LLM to answer questions grounded in the document content.
+
+No API keys. No paid services. Runs locally on CPU.
+
+## Features
+
+- Upload PDF and DOCX files directly in the app
+- Extract text with metadata including page numbers
+- Clean and chunk documents for retrieval
+- Embed text with a local sentence transformer
+- Compute cosine similarity to rank relevant chunks
+- Retrieve Top-K chunks above a similarity threshold
+- Ask a local Ollama model for grounded answers
+- View the exact retrieved context used in each response
+- Works fully offline after initial model downloads
 
 ## 1. How RAG works (read this first)
 
